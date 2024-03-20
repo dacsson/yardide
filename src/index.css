@@ -1,0 +1,32 @@
+@font-face {
+  font-family: Rogan;
+  src: url('../fonts/Yandex-Light.ttf');
+}
+
+@font-face {
+  font-family: Rogan;
+  src: url('../fonts/Yandex-Bold.ttf');
+  font-weight: bold;
+}
+
+html {
+  font-family: Rogan;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+button, input {
+  font-family: Rogan;
+}
+
+.app {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 250px auto;
+  height: 100%;
+}
