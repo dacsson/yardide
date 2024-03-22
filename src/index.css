@@ -9,24 +9,30 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: JB;
+  src: url('../fonts/JetBrainsMono-Regular.ttf');
+}
+
 html {
-  font-family: Rogan;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;;
   margin: 0;
   height: 100%;
 }
 
-body {
+#root, body {
   margin: 0;
   height: 100%;
 }
 
 button {
   font-family: Rogan;
+  cursor: pointer;
 }
 
 .app {
   margin: 0;
   display: grid;
-  grid-template-columns: 250px auto;
+  grid-template-columns: 248px auto;
   height: 100%;
 }

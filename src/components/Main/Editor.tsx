@@ -10,6 +10,8 @@ export const Editor = () => {
 				<a>4</a>
 			</div>
 			<textarea autoCorrect='off' spellCheck={false}/>
+			<button className='m_change' id="newButton">Change</button>
+			<a className='m_info' id="info">Hello, world</a>
 		</div>
 	)
 }

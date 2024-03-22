@@ -12,18 +12,18 @@
   align-items: center;
 }
 
+.s_button_group {
+  margin-left: 22px;
+}
+
 .s_nav button {
-  margin-right: 5px;
+  margin-right: 7px;
   border: 0px;
   box-shadow: none;
   outline: none;
   border-radius: 10px;
-  width: 16px;
-  height: 16px;
-}
-
-.s_nav .s_button_group {
-  margin-left: 20px;
+  width: 17px;
+  height: 17px;
 }
 
 .s_nav .close {
@@ -42,9 +42,71 @@
 }
 
 .s_menu {
-  background-color: bisque;
+  display: flex;
+}
+
+.s_menu .s_button_group {
+  width: 210px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s_menu button {
+  margin-right: 5px;
+  border: 0px;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
 }
 
 .s_browser {
-  background-color: blue;
+  margin-top: 3px;
+}
+
+.s_browser .s_dir {
+  display: flex;
+  align-items: center;  
+}
+
+.s_browser button {
+  display: flex;
+  align-items: center;  
+  margin-right: 5px;
+  border: 0px;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.s_browser .s_button_icon {
+  color: #d6d6d6;
+  margin-left: 20px;
+}
+
+.s_browser button:hover {
+  background-color: #474747;
+}
+
+.s_browser a {
+  color: #d6d6d6;
+  font-weight: 600;
+  margin-left: 9px;
+  font-size: 16px;
+}
+
+.s_browser .s_button_ddir {
+  color: #d6d6d6;
+  margin-left: 10px;
+}
+
+.s_browser .s_button_ddir a {
+  
 }

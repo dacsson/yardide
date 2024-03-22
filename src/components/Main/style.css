@@ -41,7 +41,7 @@
 
 .m_editor {
   display: grid;
-  grid-template-columns: 75px auto;
+  grid-template-columns: 58px auto;
 }
 
 .m_editor .m_lines {
@@ -50,7 +50,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: monospace;
+  font-family: JB;
+  color: #7a7a7a;
+  font-weight: bold;
 }
 
 .m_editor .m_lines a {
@@ -58,9 +60,10 @@
 }
 
 .m_editor textarea {
+  margin-left: 15px;
   margin-top: 20px;
   font-size: 16px;
-  font-family: monospace;
+  font-family: JB;
   background-color: #222222;;
   border: 0px;
   outline: none;

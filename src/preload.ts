@@ -1,2 +1,42 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
+// const { contextBridge } = require('electron')
+
+// contextBridge.exposeInMainWorld('versions', {
+//   node: () => process.versions.node,
+//   chrome: () => process.versions.chrome,
+//   electron: () => process.versions.electron
+//   // we can also expose variables, not just functions
+// })
+// window.addEventListener('click', () => {
+//     // const replaceText = (selector: string, text: string) => {
+//     //   const element = document.getElementById(selector)
+//     //   if (element) element.innerText = text
+//     // }
+  
+//     // for (const dependency of ['chrome', 'node', 'electron']) {
+//     //   replaceText(`${dependency}-version`, process.versions[dependency])
+//     // }
+
+//     const element = document.getElementById('info')
+//     if(element) element.innerText = 'Goodbye, world'
+
+//     console.log('\n\tpreloaded\t\n')
+//   })
+// import { contextBridge } from 'electron'
+
+// contextBridge.exposeInMainWorld('versions', {
+//   node: () => process.versions.node,
+//   chrome: () => process.versions.chrome,
+//   electron: () => process.versions.electron
+//   // we can also expose variables, not just functions
+// })
+const { contextBridge, ipcRenderer } = require('electron')
+
+// contextBridge.exposeInMainWorld('electronAPI', {
+//   loadPreferences: () => ipcRenderer.invoke('load-prefs')
+// })
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  setTitle: (title: any) => ipcRenderer.send('set-title', title)
+})
