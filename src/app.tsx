@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import { Editor } from './components/Main/Editor'
+import { Main } from './components/Main/Main'
 import { Sidebar } from './components/Sidebar/Sidebar';
 
 const root = createRoot(document.body);
 root.render(
   <div className='app'>
     <Sidebar />
-    <Editor />
+    <Main />
   </div>
 );

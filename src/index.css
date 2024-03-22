@@ -1,6 +1,6 @@
 @font-face {
   font-family: Rogan;
-  src: url('../fonts/Yandex-Light.ttf');
+  src: url('../fonts/YandexSansText-Regular.ttf');
 }
 
 @font-face {
@@ -20,7 +20,7 @@ body {
   height: 100%;
 }
 
-button, input {
+button {
   font-family: Rogan;
 }
 
