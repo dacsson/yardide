@@ -13,7 +13,7 @@
   align-items: center;
   background-color: #191919;
   text-align: right;
-  border-top-right-radius: 10px;
+  /* border-top-right-radius: 10px; */
 }
 
 .m_controls .m_drag {
@@ -29,14 +29,14 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  border-bottom-right-radius: 10px;
+  /* border-bottom-right-radius: 10px; */
 }
 
 .m_status_bar a {
   margin-right: 10px;
   font-size: 12px;
   color: #818181;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .m_editor {
@@ -70,4 +70,5 @@
   box-shadow: none;
   color: #fff;
   resize: none;
+  line-height: 22px;
 }

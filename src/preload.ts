@@ -38,5 +38,21 @@ const { contextBridge, ipcRenderer } = require('electron')
 // })
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  setTitle: (title: any) => ipcRenderer.send('set-title', title)
+  // setTitle: (title: any) => ipcRenderer.send('set-title', title)
+  //send: (channel, data) => {
+  request: (channel: string, data: any) => {
+    // whitelist channels
+    let validChannels = ["toMain"];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.send(channel, data);
+    }
+  },
+  //receive: (channel, func) => {
+  response: (channel: string, func : Function) => {
+    let validChannels = ["fromMain"];
+    if (validChannels.includes(channel)) {
+      // Deliberately strip event as it includes `sender` 
+      ipcRenderer.on(channel, (event, ...args) => func(...args));
+    }
+  }
 })

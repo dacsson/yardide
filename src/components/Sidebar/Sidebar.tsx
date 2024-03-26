@@ -4,7 +4,8 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaGear } from "react-icons/fa6";
 import { FaSquarePlus } from "react-icons/fa6";
 import { FaRegFolder } from "react-icons/fa6";
-import { VscChevronRight } from "react-icons/vsc";
+import { FaAngleRight } from "react-icons/fa6";
+import { FaRegFolderOpen } from "react-icons/fa6";
 
 import './style.css'
 
@@ -68,27 +69,27 @@ export const Sidebar = () =>
             onClick={() => handleOpenGroup(1)} 
             style={{ color: dirsOpen ? '#00bcd4': '#d6d6d6'}}
           >
-            <FaFolder size={'20px'}/>
+            <FaFolder size={'18px'}/>
           </button>
           <button 
             id='openSearch'
             onClick={() => handleOpenGroup(2)} 
             style={{ color: searchOpen ? '#00bcd4' : '#d6d6d6'}}
           >
-            <FaMagnifyingGlass size={'20px'}/>
+            <FaMagnifyingGlass size={'18px'}/>
           </button>
           <button 
             id='openSettings'
             onClick={() => handleOpenGroup(3)} 
             style={{ color: settingsOpen ? '#00bcd4': '#d6d6d6'}}
           >
-            <FaGear size={'20px'}/></button>
+            <FaGear size={'18px'}/></button>
           <button 
             id='openDoc'
             onClick={() => handleOpenGroup(4)} 
             style={{ color: newDocOpen ? '#00bcd4' : '#d6d6d6'}}
           >
-            <FaSquarePlus size={'20px'}/>
+            <FaSquarePlus size={'18px'}/>
           </button>
         </div>
       </div>
@@ -97,13 +98,13 @@ export const Sidebar = () =>
         &&
         <div className='s_browser'>
           <button id='openBtn'>
-            <FaRegFolder size={'20px'} className='s_button_icon'/>
-            <a>labs</a>
+            <FaRegFolderOpen size={'18px'} className='s_button_icon' style={{ color: '#fff' }}/>
+            <a style={{ color: '#fff' }}>wispy</a>
           </button>
           <button>
-            <VscChevronRight size={'20px'} className='s_button_icon' style={{ fontWeight: 'lighter' }}/>
-            <FaFolder size={'20px'} className='s_button_ddir'/>
-            <a>OOP</a>
+            <FaAngleRight size={'16px'} className='s_button_icon' style={{ fontWeight: 'lighter' }}/>
+            <FaFolder size={'18px'} className='s_button_ddir'/>
+            <a>.github</a>
           </button>
         </div>
       }
