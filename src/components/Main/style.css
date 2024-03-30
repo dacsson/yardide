@@ -34,18 +34,25 @@
 
 .m_status_bar a {
   margin-right: 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: #818181;
   font-weight: 500;
 }
 
+/* MAIN AREA */
+.m_main {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+/* TEXT EDIT AREA */
 .m_editor {
   display: grid;
   grid-template-columns: 58px auto;
 }
 
 .m_editor .m_lines {
-  margin-top: 22px;
+  margin-top: 24px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -64,11 +71,25 @@
   margin-top: 20px;
   font-size: 16px;
   font-family: JB;
-  background-color: #222222;;
+  background-color: #222222;
   border: 0px;
   outline: none;
   box-shadow: none;
   color: #fff;
   resize: none;
   line-height: 22px;
+}
+
+/* OUTPUT PREVIEW */
+.m_preview {
+  background-color: #222222;
+}
+
+.m_preview iframe {
+  background-color: #fff;
+  width: 99%;
+  height: 100%;
+  border: 1px;
+  outline: none;
+  box-shadow: none;
 }

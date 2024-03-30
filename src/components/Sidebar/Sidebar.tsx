@@ -9,7 +9,12 @@ import { FaRegFolderOpen } from "react-icons/fa6";
 
 import './style.css'
 
-export const Sidebar = () =>
+interface ISidebarProps {
+  dirName: string,
+  files: string[]
+}
+
+export const Sidebar = ({dirName, files} : ISidebarProps) =>
 {
   const [dirsOpen, setDirsOpen] = useState<boolean>(true);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
@@ -99,13 +104,17 @@ export const Sidebar = () =>
         <div className='s_browser'>
           <button id='openBtn'>
             <FaRegFolderOpen size={'18px'} className='s_button_icon' style={{ color: '#fff' }}/>
-            <a style={{ color: '#fff' }}>wispy</a>
+            <a style={{ color: '#fff' }}>{dirName}</a>
           </button>
-          <button>
-            <FaAngleRight size={'16px'} className='s_button_icon' style={{ fontWeight: 'lighter' }}/>
-            <FaFolder size={'18px'} className='s_button_ddir'/>
-            <a>.github</a>
-          </button>
+          {
+            files.map((name, index) => {
+              <button key={index}>
+                <FaAngleRight size={'16px'} className='s_button_icon' style={{ fontWeight: 'lighter' }}/>
+                <FaFolder size={'18px'} className='s_button_ddir'/>
+                <a>{name}</a>
+              </button>
+            })
+          }
         </div>
       }
     </div>

@@ -29,7 +29,7 @@ export const Editor = () => {
           )
         }
 			</div>
-			<textarea autoFocus={true} autoCorrect='off' spellCheck={false} onChange={(e) => handleTextInput(e)} />
+			<textarea id="edit-area" autoFocus={true} autoCorrect='off' spellCheck={false} onChange={(e) => handleTextInput(e)} />
 		</div>
 	)
 }

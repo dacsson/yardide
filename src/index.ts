@@ -30,7 +30,7 @@ const createWindow = (): void => {
       nodeIntegrationInWorker: true
     },
     frame: false,
-    transparent: true,
+    transparent: true
   });
 
   // and load the index.html of the app.
@@ -45,13 +45,18 @@ const createWindow = (): void => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   ipcMain.on("toMain", (event, args) => {
-    fs.readFile("/home/thephoneoff/Documents/labs/OOP/OOP1.md", (error, data) => {
+    fs.readdir('/home/thephoneoff/Documents/labs/OOP', (error, files) => {
+      BrowserWindow.getFocusedWindow().webContents.send("fromMain", files);
+    });
+  });
+  ipcMain.on("readFile", (event, args) => {
+    fs.readFile("/home/thephoneoff/MyProjects/yard/test/temp.html", (error, data) => {
       // Do something with file contents
       console.log("in main read file:", data.toString())
       // Send result back to renderer process
-      BrowserWindow.getFocusedWindow().webContents.send("fromMain", "Artjom");
+      BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
     });
-  });
+  })
   createWindow();
 });
 

@@ -6,7 +6,7 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 const Index = () => {
   return (
     <div className='app' id='m_app'>
-      <Sidebar />
+      <Sidebar dirName='' files={[]}/>
       <Main />
     </div>
   )
