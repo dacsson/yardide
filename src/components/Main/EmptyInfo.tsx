@@ -26,7 +26,7 @@ export const EmptyInfo = ({setFileOpened, handleOpenFile, setOpenCreateModal} : 
     window.electronAPI.response("yardText", (data) => {
       // window.document.getElementById('info').innerText = data
       var _data = new TextDecoder().decode(data.content);
-      console.log("yard data file: ", data)
+      // console.log("yard data file: ", data)
       setFileOpened(true);
       handleOpenFile(_data, data.path);
     });

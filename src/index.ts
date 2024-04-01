@@ -39,39 +39,46 @@ const createWindow = (): void => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
   ipcMain.on("readDir", (event, args) => {
-    console.log("readDir: ", args);
+    // console.log("readDir: ", args);
     fs.readdir(args, (error, files) => {
       BrowserWindow.getFocusedWindow().webContents.send("dirFiles", files);
     });
   });
   ipcMain.on("readFile", (event, args) => {
-    console.log("reading: ", args[0], args[1])
+    // console.log("reading: ", args[0], args[1])
     // save file
     fs.writeFile(args[0], args[1], () => {});
     var cp = require("child_process");
     // /home/thephoneoff/MyProjects/yard/build
-    const yard_comp = cp.spawn('/home/thephoneoff/MyProjects/yard/build/main', [args[0], 'html']);
-    yard_comp.stdout.on('data', (data) => {
-      BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
-      // console.log('spawned', data);
-    })
+
+    var localdir = path.join(__dirname, '..', '..', '../yard/build/main');
+    console.log("path ", localdir)
+    const yard_comp = cp.spawn(localdir, [args[0], 'html']);
+    // yard_comp.stdout.on('data', (data) => {
+    //   BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
+    //   // console.log('spawned', data);
+    // })
     yard_comp.stderr.on('data', (data) => {
       BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
       // console.error(`stderr: ${data}`);
     });
     
     yard_comp.on('close', (code) => {
-      console.log(`child process exited with code ${code}`);
+      if(code == 0)
+      {
+        var localdir = path.join(__dirname, '..', '..', '../yard/test/temp.html');
+        fs.readFile(localdir, (error, data) => {
+          // Do something with file contents
+          // console.log("in main read file:", data.toString())
+          // Send result back to renderer process
+          BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
+        });
+      }
+      // console.log(`child process exited with code ${code}`);
     }); 
-    // fs.readFile("/home/thephoneoff/MyProjects/yard/test/LR_BD.html", (error, data) => {
-    //   // Do something with file contents
-    //   // console.log("in main read file:", data.toString())
-    //   // Send result back to renderer process
-    //   BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
-    // });
   })
   ipcMain.on("readYardFile", (event, args) => {
-    console.log("requested yard file");
+    // console.log("requested yard file");
     dialog.showOpenDialog({ 
       properties: ['openFile'],
       filters: [
@@ -91,7 +98,7 @@ app.on('ready', () => {
     )
   })
   ipcMain.on("saveNewFile", (event, args) => {
-    console.log("save new file: ", args)
+    // console.log("save new file: ", args)
     dialog.showSaveDialog({
 
     })
@@ -99,6 +106,17 @@ app.on('ready', () => {
       path => {
         fs.writeFile(path.filePath, args[0], () => {});
         BrowserWindow.getFocusedWindow().webContents.send("newFilePath",  path.filePath);
+      }
+    )
+  })
+  ipcMain.on("exportPdf", (event, args) => {
+    // console.log("save new file: ", args)
+    dialog.showSaveDialog({
+
+    })
+    .then(
+      path => {
+        fs.writeFile(path.filePath, args, () => {});
       }
     )
   })

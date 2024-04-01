@@ -19,7 +19,7 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
   const [localFiles, setLocalFiles] = useState<Array<string>>(files);
 
   useEffect(() => {
-    console.log("curr path", path.length, " files ", files)
+    // console.log("curr path", path.length, " files ", files)
     if(path.length > 0)
     {
       try {
@@ -27,7 +27,7 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
       }
       finally {
         window.electronAPI.response("dirFiles", (data) => {
-          console.log("dir files: ", data)
+          // console.log("dir files: ", data)
           setFiles(data);
           setLocalFiles(data);
         });

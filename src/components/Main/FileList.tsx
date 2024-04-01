@@ -2,6 +2,7 @@ import { FaRegCircleDot } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCircleXmark } from "react-icons/fa6";
 import { FaRegFloppyDisk } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa6";
 
 interface IFileListProps
 {
@@ -11,9 +12,10 @@ interface IFileListProps
   fileOpened: Boolean;
   handleSaveFile: Function;
   handleOpenFile: Function;
+  handlePreviewFile: Function;
 }
 
-export const FileList = ({fileName, setFileOpened, setFilePath, fileOpened, handleSaveFile, handleOpenFile} : IFileListProps) =>
+export const FileList = ({fileName, setFileOpened, setFilePath, fileOpened, handleSaveFile, handleOpenFile, handlePreviewFile} : IFileListProps) =>
 {
   const handleCloseFile = () =>
   {
@@ -33,6 +35,9 @@ export const FileList = ({fileName, setFileOpened, setFilePath, fileOpened, hand
             <a>{fileName.replace(/^.*[\\/]/, '')}</a>
           </div>
           <div className="m_file_bgroup">
+            <button onClick={() => handlePreviewFile()}>
+              <FaPlay size={"16px"}/>
+            </button>
             <button onClick={() => {}}>
               <FaRegFloppyDisk size={"16px"}/>
             </button>

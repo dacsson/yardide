@@ -29,19 +29,6 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
     var textArea : HTMLTextAreaElement = document.getElementById('edit-area');
     setTextInput(textArea.value)
     setNumberOfLine(getTextareaNumberOfLines(textArea))
-    try {
-      window.electronAPI.request("readFile", [filePath, textArea.value]);
-    }
-    finally {
-      window.electronAPI.response("fileText", (data) => {
-        var _data = new TextDecoder().decode(data);
-        var previewBox : HTMLIFrameElement = document.getElementById('preview-box');
-        previewBox.contentWindow.document.close();
-        previewBox.contentWindow.document.open();
-        previewBox.contentWindow.document.write(_data);
-        console.log("from file: ", _data)
-      })
-    }
   }
 
   const handleOpenFile = (newText : string, path : string) => {
@@ -57,6 +44,24 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
     [/\\[\wа-я]+/g, { color: '#33c748' }]
   ]);
 
+  const handlePreviewFile = () =>
+  {
+    try {
+      var textArea : HTMLTextAreaElement = document.getElementById('edit-area');
+      window.electronAPI.request("readFile", [filePath, textArea.value]);
+    }
+    finally {
+      window.electronAPI.response("fileText", (data) => {
+        var _data = new TextDecoder().decode(data);
+        var previewBox : HTMLIFrameElement = document.getElementById('preview-box');
+        previewBox.contentWindow.document.close();
+        previewBox.contentWindow.document.open();
+        previewBox.contentWindow.document.write(_data);
+        // console.log("from file: ", _data)
+      })
+    }
+  }
+
   const handleSaveFile = () => {
     try {
       window.electronAPI.request("saveNewFile", [textInput, filePath]);
@@ -65,7 +70,7 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
       window.electronAPI.response("newFilePath", (data) => {
         // window.document.getElementById('info').innerText = data
         // var _data = new TextDecoder().decode(data);
-        console.log("data file: ", data)
+        // console.log("data file: ", data)
         setFileOpened(true);
         handleOpenFile(textInput, data);
       });
@@ -85,7 +90,7 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
           previewBox.contentWindow.document.close();
           previewBox.contentWindow.document.open();
           previewBox.contentWindow.document.write(_data);
-          console.log("from file: ", _data)
+          // console.log("from file: ", _data)
         })
       }
     }
@@ -100,6 +105,7 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
         fileOpened={fileOpened} 
         handleSaveFile={handleSaveFile}
         handleOpenFile={handleOpenFile}
+        handlePreviewFile={handlePreviewFile}
       />
       {
         fileOpened
@@ -123,8 +129,8 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
             className='code_area'
             id='edit-area'
             value={textInput}
-            style={{ height: "100%", width: 'auto' }}
             onChange={() => handleTextInput()}
+            style={{ height: '100%', minWidth: '700px'}}
           >
             {renderer}
           </RichTextarea>

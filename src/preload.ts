@@ -42,10 +42,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
   //send: (channel, data) => {
   request: (channel: string, data: any) => {
     // whitelist channels
-    let validChannels = ["toMain", "readFile", "readYardFile", "readDir", "saveNewFile", "saveFile"];
+    let validChannels = ["toMain", "readFile", "readYardFile", "readDir", "saveNewFile", "saveFile", "exportPdf"];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
-      console.log("sending channel: ", channel)
+      // console.log("sending channel: ", channel)
     }
   },
   //receive: (channel, func) => {
@@ -54,7 +54,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender` 
       ipcRenderer.on(channel, (event, ...args) => func(...args));
-      console.log("recieved data from: ", channel);
+      // console.log("recieved data from: ", channel);
     }
   }
 })
