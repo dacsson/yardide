@@ -1,20 +1,22 @@
 .m_container {
-  background-color: #222222;
+  background-color: #2e2e2e;
   height: 100%;
   color: #fff;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   display: grid;
-  grid-template-rows: 32px auto 22px;
+  grid-template-rows: 34px auto;
 }
 
 .m_controls {
   display: flex;
   align-items: center;
-  background-color: #191919;
+  background-color: #232425;
   text-align: right;
   /* border-top-right-radius: 10px; */
 }
+
+/* CONTROL BAR DRAGGABLE */
 
 .m_controls .m_drag {
   -webkit-app-region: drag;
@@ -22,21 +24,51 @@
   flex-grow: 1;
 }
 
-.m_status_bar {
-  bottom: 0;
-  width: 100%;
-  background-color: #2d2d2d;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  /* border-bottom-right-radius: 10px; */
+/* FILE NAME AND EXTENSION */
+
+.m_file {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #5f5e5f;
+  border-right: 1px solid #5f5e5f;
 }
 
-.m_status_bar a {
-  margin-right: 10px;
-  font-size: 14px;
-  color: #818181;
-  font-weight: 500;
+.m_file .m_file_info {
+  margin-left: 8px;
+  margin-right: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.m_file a {
+  margin-left: 7px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #99999a;
+}
+
+.m_file_info button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0px;
+  padding: 2px;
+  color: #999999;
+}
+
+.m_file_info .m_file_bgroup {
+  display: flex;
+  row-gap: 5px;
+}
+
+/* PREVIEW INFO */
+
+.m_preview_info {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #5f5e5f;
+  display: flex;
+  align-items: center;
 }
 
 /* MAIN AREA */
@@ -46,13 +78,19 @@
 }
 
 /* TEXT EDIT AREA */
+.m_file_area {
+  display: grid;
+  grid-template-rows: 38px auto;
+}
+
 .m_editor {
   display: grid;
-  grid-template-columns: 58px auto;
+  grid-template-columns: 48px auto;
+  border-right: 1px solid #5f5e5f;
 }
 
 .m_editor .m_lines {
-  margin-top: 24px;
+  margin-top: 4px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
@@ -60,18 +98,19 @@
   font-family: JB;
   color: #7a7a7a;
   font-weight: bold;
+  text-align: center;
 }
 
 .m_editor .m_lines a {
   height: 22px;
 }
 
-.m_editor textarea {
-  margin-left: 15px;
-  margin-top: 20px;
+.m_editor textarea, .code_area {
+  margin-top: 2px;
+  margin-left: 0px;
   font-size: 16px;
   font-family: JB;
-  background-color: #222222;
+  background-color: #2e2e2e;
   border: 0px;
   outline: none;
   box-shadow: none;
@@ -82,14 +121,56 @@
 
 /* OUTPUT PREVIEW */
 .m_preview {
-  background-color: #222222;
+  background-color: #2e2e2e;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .m_preview iframe {
   background-color: #fff;
-  width: 99%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   border: 1px;
   outline: none;
   box-shadow: none;
+}
+
+/* WHEN NO FILES OPENED */
+.m_empty_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #5f5e5f;
+}
+
+.m_empty_info h3 {
+  color: #7a7a7a;
+  font-weight: normal;
+  margin-bottom: inherit;
+}
+
+.m_empty_info a {
+  color: #7a7a7a;
+}
+
+.m_empty_info button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  background-color: #0077ff;
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: none;
+  color: #fff
+}
+
+.m_empty_info button .m_b_icon {
+  margin-left: 5px;
+  color: #fff;
 }

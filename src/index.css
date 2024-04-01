@@ -23,6 +23,7 @@ html {
 #root, body {
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }
 
 button {
@@ -33,6 +34,6 @@ button {
 .app {
   margin: 0;
   display: grid;
-  grid-template-columns: 248px auto;
+  grid-template-columns: 225px auto;
   height: 100%;
 }

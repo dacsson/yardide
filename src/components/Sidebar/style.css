@@ -1,19 +1,20 @@
 .s_container {
-  background: #333333;
+  background: #464647;
   height: 100%;
   /* border-bottom-left-radius: 10px; */
   /* border-top-left-radius: 10px; */
   display: grid;
-  grid-template-rows: 34px 40px auto 40px;
+  grid-template-rows: 34px 38px auto;
 }
 
 .s_nav {
   display: flex;
   align-items: center;
+  background-color: #232425;
 }
 
 .s_button_group {
-  margin-left: 22px;
+  margin-left: 10px;
 }
 
 .s_nav button {
@@ -43,11 +44,14 @@
 
 .s_menu {
   display: flex;
+  border-bottom: 1px solid #5f5e5f;
+  border-right: 1px solid #5f5e5f;
 }
 
 .s_menu .s_button_group {
-  width: 205px;
-  margin-left: 20px;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,12 +63,41 @@
   box-shadow: none;
   outline: none;
   background-color: transparent;
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* STATUS BAR WITH INFO TEXT */
+
+.s_status_bar {
+  border-bottom: 1px solid #5f5e5f;
+  border-right: 1px solid #5f5e5f;
+  /* border-bottom-right-radius: 10px; */
+}
+
+.s_status_field {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.s_status_bar a {
+  font-size: 15px;
+  color: #7c7c7c;
+}
+
+/* CONTENT OF SIDEBAR */
+
 .s_browser {
-  margin-top: 3px;
+  margin-top: 0px;
+  border-right: 1px solid #5f5e5f;
 }
 
 .s_browser .s_dir {
@@ -88,7 +121,7 @@
 
 .s_browser .s_button_icon {
   color: #d6d6d6;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .s_browser button:hover {
@@ -104,9 +137,18 @@
 
 .s_browser .s_button_ddir {
   color: #d6d6d6;
-  margin-left: 14px;
+  margin-left: 30px;
 }
 
-.s_browser .s_button_ddir a {
-  
+/* NO DIR OPENED */
+.s_no_dir {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.s_no_dir a {
+  color: #7a7a7a;
+  font-weight: normal;
 }

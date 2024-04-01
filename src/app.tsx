@@ -1,13 +1,23 @@
+import { useState } from 'react';
 import { render } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { Main } from './components/Main/Main'
+import { CreateModal } from './components/Modal/CreateModal';
 import { Sidebar } from './components/Sidebar/Sidebar';
 
 const Index = () => {
+  const [dirName, setDirName] = useState<string>("");
+  const [openCreateModal, setOpenCreateModal] = useState<boolean>(false);
+
   return (
     <div className='app' id='m_app'>
-      <Sidebar dirName='' files={[]}/>
-      <Main />
+      {/* {
+        openCreateModal
+        &&
+        <CreateModal setOpenCreateModal={setOpenCreateModal}/>
+      } */}
+      <Sidebar path={dirName}/>
+      <Main setDirName={setDirName} setOpenCreateModal={setOpenCreateModal}/>
     </div>
   )
 };
