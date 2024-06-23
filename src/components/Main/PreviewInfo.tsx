@@ -16,7 +16,7 @@ export const PreviewInfo = () =>
 
   const handleSavePreview = () =>
   {
-    var frame : HTMLIFrameElement = document.getElementById('preview-box');
+    var frame : HTMLElement = document.getElementById('preview-box');
     window.electronAPI.request("exportPdf", frame.contentDocument.body.innerHTML);
     // var pdfDoc = new jsPDF('p', 'pt', 'letter');
     // var options = {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FaFolder } from "react-icons/fa6";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaGear } from "react-icons/fa6";
@@ -13,12 +13,10 @@ import { DirBrowser } from "./DirBroswer";
 import { NoDir } from "./NoDir";
 
 import './style.css'
+import { YrdContextType } from "../../@types/types";
+import { YrdContext } from "../Context/YrdContext";
 
-interface ISidebarProps {
-  path: string
-}
-
-export const Sidebar = ({path} : ISidebarProps) =>
+export const Sidebar = () =>
 {
   const [dirsOpen, setDirsOpen] = useState<boolean>(false);
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
@@ -27,6 +25,8 @@ export const Sidebar = ({path} : ISidebarProps) =>
   const [errorsOpen, setErrorsOpen] = useState<boolean>(false);
   const [elementsOpen, setElementsOpen] = useState<boolean>(false);
   const [files, setFiles] = useState<Array<string>>([]);
+
+  const context = useContext<YrdContextType>(YrdContext);
 
   const handleOpenGroup = (index: number) => {
     switch (index) {
@@ -110,43 +110,43 @@ export const Sidebar = ({path} : ISidebarProps) =>
           <button 
             id='openDir' 
             onClick={() => handleOpenGroup(1)} 
-            style={{ color: dirsOpen ? '#fff': '#232324', backgroundColor: dirsOpen ? "#0077ff" : "transparent"}}
+            style={{ color: dirsOpen ? '#fff': '#b8b8b8', backgroundColor: dirsOpen ? "#0077ff" : "transparent"}}
           >
-            <FaFolder size={'17px'}/>
+            <FaFolder size={'18px'}/>
           </button>
           <button 
             id='openElements'
             onClick={() => handleOpenGroup(6)} 
-            style={{ color: elementsOpen ? '#fff' : '#232324', backgroundColor: elementsOpen  ? "#0077ff" : "transparent"}}
+            style={{ color: elementsOpen ? '#fff' : '#b8b8b8', backgroundColor: elementsOpen  ? "#0077ff" : "transparent"}}
           >
-            <FaFont size={'17px'}/>
+            <FaFont size={'18px'}/>
           </button>
           <button 
             id='openSearch'
             onClick={() => handleOpenGroup(2)} 
-            style={{ color: searchOpen ? '#fff' : '#232324', backgroundColor: searchOpen ? "#0077ff" : "transparent"}}
+            style={{ color: searchOpen ? '#fff' : '#b8b8b8', backgroundColor: searchOpen ? "#0077ff" : "transparent"}}
           >
-            <FaMagnifyingGlass size={'17px'}/>
+            <FaMagnifyingGlass size={'18px'}/>
           </button>
           <button 
             id='openSettings'
             onClick={() => handleOpenGroup(3)} 
-            style={{ color: settingsOpen ? '#fff': '#232324', backgroundColor: settingsOpen ? "#0077ff" : "transparent"}}
+            style={{ color: settingsOpen ? '#fff': '#b8b8b8', backgroundColor: settingsOpen ? "#0077ff" : "transparent"}}
           >
-            <FaGear size={'17px'}/></button>
+            <FaGear size={'18px'}/></button>
           <button 
             id='openErrors'
             onClick={() => handleOpenGroup(5)} 
-            style={{ color: errorsOpen ? '#fff' : '#232324', backgroundColor: errorsOpen ? "#0077ff" : "transparent"}}
+            style={{ color: errorsOpen ? '#fff' : '#b8b8b8', backgroundColor: errorsOpen ? "#0077ff" : "transparent"}}
           >
-            <FaTriangleExclamation size={'17px'}/>
+            <FaTriangleExclamation size={'18px'}/>
           </button>
           <button 
             id='openDoc'
             onClick={() => handleOpenGroup(4)} 
-            style={{ color: newDocOpen ? '#fff' : '#232324', backgroundColor: newDocOpen ? "#0077ff" : "transparent"}}
+            style={{ color: newDocOpen ? '#fff' : '#b8b8b8', backgroundColor: newDocOpen ? "#0077ff" : "transparent"}}
           >
-            <FaSquarePlus size={'17px'}/>
+            <FaSquarePlus size={'18px'}/>
           </button>
         </div>
       </div>
@@ -163,7 +163,7 @@ export const Sidebar = ({path} : ISidebarProps) =>
       {
         dirsOpen
         &&
-        <DirBrowser path={path} setFiles={setFiles} files={files}/>
+        <DirBrowser path={context.currPath} setFiles={setFiles} files={files}/>
       }
     </div>
   )

@@ -1,8 +1,7 @@
-import { FcOpenedFolder } from "react-icons/fc";
-import { FaHtml5 } from "react-icons/fa6";
-import { FaFilePdf } from "react-icons/fa6";
-import { FaFileLines } from "react-icons/fa6";
-import { FaFile } from "react-icons/fa6";
+import { FaFolderClosed } from "react-icons/fa6";
+import { AiOutlineFilePdf } from "react-icons/ai";
+import { AiOutlineFileText } from "react-icons/ai";
+import { AiOutlineFile } from "react-icons/ai";
 import { useEffect, useState } from 'react'
 import { NoDir } from './NoDir'
 import './style.css'
@@ -17,6 +16,26 @@ interface IDirBrowserProps
 export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) => 
 {
   const [localFiles, setLocalFiles] = useState<Array<string>>(files);
+
+  // const handleGetFile = (path: string) => {
+  //   // ipcRenderer.send()
+  //   try {
+  //     window.electronAPI.request("readPickedFile", path);
+  //   }
+  //   finally {
+  //     window.electronAPI.response("yardText", (data) => {
+  //       // window.document.getElementById('info').innerText = data
+  //       var _data = new TextDecoder().decode(data.content);
+  //       // console.log("yard data file: ", data)
+  //       setFileOpened(true);
+  //       handleOpenFile(_data, data.path);
+  //     });
+  //   }
+  // }
+
+  // useEffect(() => {
+
+  // }, [])
 
   useEffect(() => {
     // console.log("curr path", path.length, " files ", files)
@@ -38,16 +57,16 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
   const handleFileIcon = (extension: string) => {
     switch (extension) {
       case "html":
-        return <FaHtml5 size={'18px'} className='s_button_ddir'/>
+        return <AiOutlineFile size={'18px'} className='s_button_ddir'/>
         break;
       case "pdf":
-        return <FaFilePdf size={'18px'} className='s_button_ddir'/>
+        return <AiOutlineFilePdf size={'18px'} className='s_button_ddir'/>
         break;
       case "yard":
-        return <FaFileLines size={'18px'} className='s_button_ddir'/>
+        return <AiOutlineFileText size={'18px'} className='s_button_ddir'/>
         break;
       default:
-        return <FaFile size={'18px'} className='s_button_ddir'/>
+        return <AiOutlineFile size={'18px'} className='s_button_ddir'/>
         break;
     }
   }
@@ -59,7 +78,8 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
         ?
         <div>
           <button id='openBtn'>
-            <FcOpenedFolder size={'20px'} className='s_button_icon' style={{ color: '#fff' }}/>
+            <FaFolderClosed size={'20px'} className='s_button_icon' style={{ color: '#61b5db' }}/>
+            {/* <a style={{ width: '20px' }} className='s_button_icon'>🗀</a> */}
             <a style={{ color: '#fff' }}>{path.replace(/^.*[\\/]/, '')}</a>
           </button>
           {
@@ -67,7 +87,7 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
               return( 
                 <button key={index}>
                   { handleFileIcon(name.split('.').pop()) }
-                  <a style={{ fontWeight: 'normal' }}>{name}</a>
+                  <a>{name}</a>
                 </button> 
               )
             })

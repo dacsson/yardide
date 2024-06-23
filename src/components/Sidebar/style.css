@@ -1,5 +1,5 @@
 .s_container {
-  background: #464647;
+  background: #2d2d2d;
   height: 100%;
   /* border-bottom-left-radius: 10px; */
   /* border-top-left-radius: 10px; */
@@ -63,8 +63,8 @@
   box-shadow: none;
   outline: none;
   background-color: transparent;
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
   border-radius: 5px;
   padding: 5px;
   display: flex;
@@ -129,14 +129,13 @@
 }
 
 .s_browser a {
-  color: #d6d6d6;
-  font-weight: 600;
+  color: #fff;
   margin-left: 9px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .s_browser .s_button_ddir {
-  color: #d6d6d6;
+  color: #717171;
   margin-left: 30px;
 }
 
@@ -150,5 +149,5 @@
 
 .s_no_dir a {
   color: #7a7a7a;
-  font-weight: normal;
+  font-weight: lighter;
 }

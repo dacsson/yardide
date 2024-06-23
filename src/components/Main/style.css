@@ -98,7 +98,7 @@
 /* MAIN AREA */
 .m_main {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 650px auto;
 }
 
 /* TEXT EDIT AREA */

@@ -52,11 +52,9 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
     }
     finally {
       window.electronAPI.response("fileText", (data) => {
-        var _data = new TextDecoder().decode(data);
+        // var _data = new TextDecoder().decode(data);
         var previewBox : HTMLIFrameElement = document.getElementById('preview-box');
-        previewBox.contentWindow.document.close();
-        previewBox.contentWindow.document.open();
-        previewBox.contentWindow.document.write(_data);
+        previewBox.src = "file:///" + data;
         // console.log("from file: ", _data)
       })
     }
@@ -85,11 +83,9 @@ export const Editor = ({setDirName, setOpenCreateModal} : IEditorProps) => {
       }
       finally {
         window.electronAPI.response("fileText", (data) => {
-          var _data = new TextDecoder().decode(data);
+          // var _data = new TextDecoder().decode(data);
           var previewBox : HTMLIFrameElement = document.getElementById('preview-box');
-          previewBox.contentWindow.document.close();
-          previewBox.contentWindow.document.open();
-          previewBox.contentWindow.document.write(_data);
+          previewBox.src = "file:///" + data;
           // console.log("from file: ", _data)
         })
       }

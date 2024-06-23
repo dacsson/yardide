@@ -3,24 +3,23 @@ import { Preview } from './Preview'
 import { Tabs } from './Tabs'
 import { FileList } from './FileList'
 import './style.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { YrdContext } from '../Context/YrdContext'
+import { YrdContextType } from '../../@types/types'
 
-interface IMainProps
-{
-  setDirName: Function,
-  setOpenCreateModal: Function
-}
-
-export const Main = ({setDirName, setOpenCreateModal} : IMainProps) =>
+export const Main = () =>
 {
   // const [fileInput, setFileInput]
   const [isFileOpened, setIsFileOpened] = useState<boolean>(false);
+  const [openCreateModal, setOpenCreateModal] = useState<boolean>(false);
+  
+  const context = useContext<YrdContextType>(YrdContext);
 
   return(
     <div className='m_container'>
       <Tabs />
       <div className='m_main'>
-        <Editor setDirName={setDirName} setOpenCreateModal={setOpenCreateModal}/>
+        <Editor setDirName={context.setCurrPath} setOpenCreateModal={setOpenCreateModal}/>
         <Preview/>
       </div>
     </div>

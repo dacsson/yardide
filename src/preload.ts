@@ -42,7 +42,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   //send: (channel, data) => {
   request: (channel: string, data: any) => {
     // whitelist channels
-    let validChannels = ["toMain", "readFile", "readYardFile", "readDir", "saveNewFile", "saveFile", "exportPdf"];
+    let validChannels = ["toMain", "readFile", "readYardFile", "readDir", "saveNewFile", "saveFile", "exportPdf", "readPickedFile"];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
       // console.log("sending channel: ", channel)
