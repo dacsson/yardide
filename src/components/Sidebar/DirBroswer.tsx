@@ -2,8 +2,10 @@ import { FaFolderClosed } from "react-icons/fa6";
 import { AiOutlineFilePdf } from "react-icons/ai";
 import { AiOutlineFileText } from "react-icons/ai";
 import { AiOutlineFile } from "react-icons/ai";
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NoDir } from './NoDir'
+import { YrdContext } from '../Context/YrdContext'
+import { YrdContextType } from '../../@types/types'
 import './style.css'
 
 interface IDirBrowserProps
@@ -17,28 +19,31 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
 {
   const [localFiles, setLocalFiles] = useState<Array<string>>(files);
 
-  // const handleGetFile = (path: string) => {
-  //   // ipcRenderer.send()
-  //   try {
-  //     window.electronAPI.request("readPickedFile", path);
-  //   }
-  //   finally {
-  //     window.electronAPI.response("yardText", (data) => {
-  //       // window.document.getElementById('info').innerText = data
-  //       var _data = new TextDecoder().decode(data.content);
-  //       // console.log("yard data file: ", data)
-  //       setFileOpened(true);
-  //       handleOpenFile(_data, data.path);
-  //     });
-  //   }
-  // }
+  const context = useContext<YrdContextType>(YrdContext);
+
+  const handleGetFile = (path: string) => {
+    // ipcRenderer.send()
+    try {
+      console.log(" try path ", context.currPath + "/" + path);
+      window.electronAPI.request("readPickedFile", context.currPath + "/" + path);
+    }
+    finally {
+      window.electronAPI.response("yardText", (data) => {
+        // window.document.getElementById('info').innerText = data
+        var _data = new TextDecoder().decode(data.content);
+        console.log("yard data file: ", data)
+        context.setFileOpened(true);
+        context.handleOpenFile(_data, context.currPath + "/" + path);
+      });
+    }
+  }
 
   // useEffect(() => {
 
   // }, [])
 
   useEffect(() => {
-    // console.log("curr path", path.length, " files ", files)
+    console.log("curr path", path.length, " files ", files)
     if(path.length > 0)
     {
       try {
@@ -63,8 +68,11 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
         return <AiOutlineFilePdf size={'18px'} className='s_button_ddir'/>
         break;
       case "yard":
-        return <AiOutlineFileText size={'18px'} className='s_button_ddir'/>
+        return <AiOutlineFileText size={'18px'} className='s_button_ddir' style={{ color: "#fff"}}/>
         break;
+      case "shyard":
+        return <AiOutlineFileText size={'18px'} className='s_button_ddir' style={{ color: "#fff"}}/>
+        break;        
       default:
         return <AiOutlineFile size={'18px'} className='s_button_ddir'/>
         break;
@@ -85,9 +93,15 @@ export const DirBrowser = ({path, setFiles, files} : IDirBrowserProps) =>
           {
             localFiles.map((name, index) => {
               return( 
-                <button key={index}>
+                <button key={index} onClick={() => handleGetFile(name)}>
                   { handleFileIcon(name.split('.').pop()) }
-                  <a>{name}</a>
+                  { 
+                    (name.split('.').pop() == "yard" || name.split('.').pop() == "shyard") 
+                    ? 
+                    <a>{name}</a>
+                    :
+                    <a style={{ color: "#717171" }}>{name}</a> 
+                  }
                 </button> 
               )
             })

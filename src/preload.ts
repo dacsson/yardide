@@ -50,7 +50,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
   //receive: (channel, func) => {
   response: (channel: string, func : Function) => {
-    let validChannels = ["fromMain", "fileText", "yardText", "dirFiles", "newFilePath"];
+    let validChannels = ["fromMain", "fileText", "yardText", "dirFiles", "newFilePath", "compOut"];
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender` 
       ipcRenderer.on(channel, (event, ...args) => func(...args));

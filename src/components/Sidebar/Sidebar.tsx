@@ -15,6 +15,7 @@ import { NoDir } from "./NoDir";
 import './style.css'
 import { YrdContextType } from "../../@types/types";
 import { YrdContext } from "../Context/YrdContext";
+import { ErrorBrowser } from "./ErrorBrowser";
 
 export const Sidebar = () =>
 {
@@ -96,6 +97,10 @@ export const Sidebar = () =>
     }
   }
 
+  useEffect(() => {
+    handleOpenGroup(1);
+  }, [])
+
   return(
     <div className='s_container'>
       <div className='s_nav'>
@@ -164,6 +169,11 @@ export const Sidebar = () =>
         dirsOpen
         &&
         <DirBrowser path={context.currPath} setFiles={setFiles} files={files}/>
+      }
+      {
+        errorsOpen
+        &&
+        <ErrorBrowser />
       }
     </div>
   )

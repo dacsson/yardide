@@ -7,5 +7,14 @@ export const YrdContext = createContext<YrdContextType>({
   previewFile: null,
   setPreviewFile: () => {},
   currPath: null,
-  setCurrPath: () => {}
+  setCurrPath: () => {},
+  fileOpened: null,
+  setFileOpened: () => {},
+  handleOpenFile: () => {},
+  textInput:  null,
+  setTextInput: () => {},
+  numberOfLines: null,
+  setNumberOfLines: () => {},
+  filePath: null,
+  setFilePath: () => {}
 });

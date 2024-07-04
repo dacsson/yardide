@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { FaFolder } from "react-icons/fa6";
 import { FaFileCode } from "react-icons/fa6";
+import { YrdContext } from '../Context/YrdContext'
+import { YrdContextType } from '../../@types/types'
 // import { ipcRenderer } from "electron/renderer";
 import './style.css'
 
@@ -12,8 +14,10 @@ interface IEmptyInfoProps {
 
 export const EmptyInfo = ({setFileOpened, handleOpenFile, setOpenCreateModal} : IEmptyInfoProps) =>
 {
+  const context = useContext<YrdContextType>(YrdContext);
+
   const handleCreateFile = () => {
-    setFileOpened(true);
+    context.setFileOpened(true);
     // handleOpenFile("Новый файл", "/Несохранённый файл")
   }
 
@@ -27,8 +31,8 @@ export const EmptyInfo = ({setFileOpened, handleOpenFile, setOpenCreateModal} : 
       // window.document.getElementById('info').innerText = data
       var _data = new TextDecoder().decode(data.content);
       // console.log("yard data file: ", data)
-      setFileOpened(true);
-      handleOpenFile(_data, data.path);
+      context.setFileOpened(true);
+      context.handleOpenFile(_data, data.path);
     });
   }, [])
 

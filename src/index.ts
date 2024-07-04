@@ -44,6 +44,7 @@ app.on('ready', () => {
     // console.log("readDir: ", args);
     fs.readdir(args, (error, files) => {
       BrowserWindow.getFocusedWindow().webContents.send("dirFiles", files);
+      console.log(" app tsx read dir: ", files)
     });
   });
   ipcMain.on("readFile", (event, args) => {
@@ -58,8 +59,11 @@ app.on('ready', () => {
     console.log("path ", localdir)
     const yard_comp = cp.spawn(localdir, [args[0], 'pdf']);
     // yard_comp.stdout.on('data', (data) => {
-    //   BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
-    //   // console.log('spawned', data);
+    //   // BrowserWindow.getFocusedWindow().webContents.send("compOut", data);
+    //   // var error_browser = BrowserWindow.getFocusedWindow().getD document.getElementById('error_container');
+    //   // error_browser.innerText = "";
+    //   error_browser.innerText = data;
+    //   console.log('spawned', data);
     // })
     yard_comp.stderr.on('data', (data) => {
       BrowserWindow.getFocusedWindow().webContents.send("fileText", data);
@@ -70,6 +74,7 @@ app.on('ready', () => {
       if(code == 0)
       {
         var localdir = path.join(__dirname, '..', '..', '../yard/test/new.pdf');
+        console.log(" LOCAL PDF DIR ", localdir);
         BrowserWindow.getFocusedWindow().webContents.send("fileText", localdir);
         // fs.readFile(localdir, (error, data) => {
         //   // Do something with file contents
@@ -82,10 +87,11 @@ app.on('ready', () => {
     }); 
   })
   ipcMain.on("readPickedFile", (event, args) => {
-    fs.readFile(args[0], (error, data) => {
+    console.log("in main read file:", args)
+    fs.readFile(args, (error, data) => {
+      // console.log("reading ", args, data)
       var file : FileDesc = { content: data, path: args[0]}
       // Do something with file contents
-      // console.log("in main read file:", data.toString())
       // Send result back to renderer process
       BrowserWindow.getFocusedWindow().webContents.send("yardText",  file)
     });

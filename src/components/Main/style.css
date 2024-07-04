@@ -98,7 +98,7 @@
 /* MAIN AREA */
 .m_main {
   display: grid;
-  grid-template-columns: 650px auto;
+  grid-template-columns: 50% auto;
 }
 
 /* TEXT EDIT AREA */
@@ -114,7 +114,6 @@
   border-right: 1px solid #5f5e5f;
   height: calc(100vh - 34px - 38px);
   overflow-y: auto;
-  
 }
 
 .m_editor .m_lines {
